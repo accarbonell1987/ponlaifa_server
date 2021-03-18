@@ -1,0 +1,36 @@
+{
+  "name": "ponlaifa-tube-server",
+  "version": "0.1.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "author": "Kelvin Gobo && Alberto Carlos Carbonell Marcé",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "~2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "ffmpeg": "^0.0.4",
+    "ffprobe": "^1.1.0",
+    "luxon": "^1.26.0",
+    "media-thumbnail": "^1.0.0",
+    "nodemailer": "^6.4.16",
+    "nodemailer-smtp-transport": "^2.7.4",
+    "nodemon": "^2.0.2",
+    "pg": "^8.3.3",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.3.5",
+    "thumbsupply": "^0.4.0",
+    "uuid": "~8.3.0",
+    "jsonwebtoken": "^8.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "~2.0.4",
+    "prettier": "~2.0.5"
+  }
+}
