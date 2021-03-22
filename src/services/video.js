@@ -91,14 +91,17 @@ exports.updateListVideo = async (id, listId) => {
   }
 };
 
-exports.createVideo = async (listId, name, duration, data) => {
+exports.createVideo = async (name, data) => {
   try {
-    const list = await getListById(listId);
+    const defaultList = await models.ListModel.findOne({
+      where: { default: true }
+    });
 
     const video = {
       name: name,
       poster: `video/${name}/poster`,
-      duration: duration
+      duration: '',
+      listId: defaultList._id
     };
 
     if (data) {
@@ -108,7 +111,7 @@ exports.createVideo = async (listId, name, duration, data) => {
       });
     }
 
-    const createdVideo = await list.createVideo(video);
+    const createdVideo = await defaultList.createVideo(video);
     return createdVideo;
   } catch (error) {
     consoleError(`createList -> ${error.message}`);
