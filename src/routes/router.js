@@ -23,6 +23,7 @@ router.get('/lists', listBLL.getAllLists);
 router.get('/list/', listBLL.getListById);
 
 //! endpoints videos
+router.post('/video/add', videoBLL.updateListFromVideo);
 router.get('/videos', videoBLL.getVideos);
 router.get('/videos/unasigned', videoBLL.getUnasignedVideos);
 router.get('/video/caption/', videoBLL.getVideoCaption);

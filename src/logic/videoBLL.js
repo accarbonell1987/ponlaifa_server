@@ -128,3 +128,15 @@ exports.disable = async (req, res, next) => {
     return res.status(200).json({ statusCode: 400, message: error.message });
   }
 };
+
+exports.addVideo = async (req, res, next) => {
+  try {
+    const { name, data } = req.body;
+    const correct = await videoServices.createVideo();
+
+    return res.status(200).json({ statusCode: 200, response: user });
+  } catch (error) {
+    consoleError(`createUser => ${error.message}`);
+    return res.status(200).json({ statusCode: 400, message: error.message });
+  }
+};
