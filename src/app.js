@@ -1,6 +1,7 @@
 const express = require('express');
-
+const fileUpload = require('express-fileupload');
 const cors = require('cors');
+
 const app = express();
 
 var dotenv = require('dotenv');
@@ -19,6 +20,7 @@ app.set('json spaces', 2);
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
+app.use(fileUpload());
 
 const router = require('./routes/router');
 app.use('/api', router);

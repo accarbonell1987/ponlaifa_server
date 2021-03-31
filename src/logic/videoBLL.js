@@ -131,8 +131,12 @@ exports.disable = async (req, res, next) => {
 
 exports.addVideo = async (req, res, next) => {
   try {
-    const { name, video } = req.body;
-    const correct = await videoServices.createVideo(name, video);
+    console.log(req.files);
+    const file = req.files.file;
+
+    if (!req.files) throw new Error(`files not found`);
+
+    const correct = await videoServices.createVideo(file.name, file);
 
     return res.status(200).json({ statusCode: 200, response: correct });
   } catch (error) {
