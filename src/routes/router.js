@@ -27,7 +27,7 @@ router.post('/video/add', videoBLL.addVideo);
 router.get('/videos', videoBLL.getVideos);
 router.get('/videos/unasigned', videoBLL.getUnasignedVideos);
 router.get('/video/caption/', videoBLL.getVideoCaption);
-router.get('/video/poster/:name', videoBLL.getVideoPoster);
+router.get('/video/poster/', videoBLL.getVideoPoster);
 router.get('/video/data/', videoBLL.getVideoData);
 router.get('/video/:id', videoBLL.getVideo);
 router.delete('/video/delete', videoBLL.disable);

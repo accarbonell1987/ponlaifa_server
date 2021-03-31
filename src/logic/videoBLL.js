@@ -45,7 +45,8 @@ exports.updateListFromVideo = async (req, res) => {
 
 exports.getVideoPoster = async (req, res) => {
   try {
-    const name = req.params.name;
+    const name = req.query.name;
+
     const video = await videoServices.getVideoByName(name);
     const thumb = await thumbsupply.generateThumbnail(`./${assetsPath}/${video.name}`);
 
