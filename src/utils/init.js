@@ -33,11 +33,10 @@ exports.loader = async () => {
     let initDefaultVideos = false;
     const existVideos = await existDefaultVideos();
     if (!existVideos) {
-      const defaultList = await getListDefault();
-      const defaultsVideos = ['default_0', 'default_1'];
+      const defaultsVideos = ['default_0.mp4', 'default_1.mp4'];
 
-      await createVideo(defaultList._id, defaultsVideos[0], '5:32 mins', null);
-      await createVideo(defaultList._id, defaultsVideos[1], '4:43 mins', null);
+      await createVideo(defaultsVideos[0], '5:32 mins', null);
+      await createVideo(defaultsVideos[1], '4:43 mins', null);
 
       consoleInfo(`Created default videos...`);
       initDefaultVideos = true;

@@ -6,11 +6,9 @@ const { consoleInfo, consoleError } = require('../utils/console');
 const deepinclude = { model: models.ListModel };
 const assetsPath = `src/assets`;
 
-const { getListById } = require('./list');
-
 exports.existDefaultVideos = async () => {
   try {
-    const defaultsVideos = ['default_0', 'default_1'];
+    const defaultsVideos = ['default_0.mp4', 'default_1.mp4'];
 
     const videos = await models.VideoModel.findAll({ include: deepinclude });
 
@@ -105,9 +103,9 @@ exports.createVideo = async (name, data) => {
     };
 
     if (data) {
-      fs.writeFile(`${assetsPath}/${name}.mp4`, data, (err) => {
+      fs.writeFile(`${assetsPath}/${name}`, data, (err) => {
         if (err) throw new Error(`file has not been created...`);
-        consoleInfo(`${name}.mp4 file saved...`);
+        consoleInfo(`${name} file saved...`);
       });
     }
 

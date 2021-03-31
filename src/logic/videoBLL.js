@@ -45,9 +45,9 @@ exports.updateListFromVideo = async (req, res) => {
 
 exports.getVideoPoster = async (req, res) => {
   try {
-    const id = req.params.id;
-    const video = await videoServices.getVideoByName(id);
-    const thumb = await thumbsupply.generateThumbnail(`./${assetsPath}/${video.name}.mp4`);
+    const name = req.params.name;
+    const video = await videoServices.getVideoByName(name);
+    const thumb = await thumbsupply.generateThumbnail(`./${assetsPath}/${video.name}`);
 
     return res.sendFile(thumb);
   } catch (error) {
@@ -61,7 +61,7 @@ exports.getVideo = async (req, res) => {
     const name = req.params.id;
     const video = await videoServices.getVideoByName(name);
 
-    const path = `./src/assets/${video.name}.mp4`;
+    const path = `./src/assets/${video.name}`;
 
     const stat = fs.statSync(path);
     const fileSize = stat.size;
@@ -131,12 +131,12 @@ exports.disable = async (req, res, next) => {
 
 exports.addVideo = async (req, res, next) => {
   try {
-    const { name, data } = req.body;
-    const correct = await videoServices.createVideo();
+    const { name, video } = req.body;
+    const correct = await videoServices.createVideo(name, video);
 
-    return res.status(200).json({ statusCode: 200, response: user });
+    return res.status(200).json({ statusCode: 200, response: correct });
   } catch (error) {
-    consoleError(`createUser => ${error.message}`);
+    consoleError(`addVideo => ${error.message}`);
     return res.status(200).json({ statusCode: 400, message: error.message });
   }
 };
