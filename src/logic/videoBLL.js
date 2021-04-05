@@ -137,7 +137,7 @@ exports.addVideo = async (req, res, next) => {
 
     if (!req.files) throw new Error(`files not found`);
 
-    const correct = await videoServices.createVideo(file.name, file);
+    const correct = await videoServices.createVideo(file.name, file, false);
 
     return res.status(200).json({ statusCode: 200, response: correct });
   } catch (error) {

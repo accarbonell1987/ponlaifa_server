@@ -89,8 +89,10 @@ exports.updateListVideo = async (id, listId) => {
   }
 };
 
-exports.createVideo = async (name, file) => {
+exports.createVideo = async (name, file, isFromInit) => {
   try {
+    console.log(name, file, isFromInit);
+
     const defaultList = await models.ListModel.findOne({
       where: { default: true }
     });
@@ -102,22 +104,24 @@ exports.createVideo = async (name, file) => {
       listId: defaultList._id
     };
 
-    if (file) {
-      // fs.writeFile(`${assetsPath}/${name}`, file, (err) => {
-      //   if (err) throw new Error(`file has not been created...`);
-      //   consoleInfo(`${name} file saved...`);
-      // });
+    if (!isFromInit) {
+      if (file) {
+        // fs.writeFile(`${assetsPath}/${name}`, file, (err) => {
+        //   if (err) throw new Error(`file has not been created...`);
+        //   consoleInfo(`${name} file saved...`);
+        // });
 
-      file.mv(`${assetsPath}/${file.name}`, function (err) {
-        if (err) throw new Error(`file has not been created...`);
-        consoleInfo(`${name} file saved...`);
-      });
+        file.mv(`${assetsPath}/${file.name}`, function (err) {
+          if (err) throw new Error(`file has not been created...`);
+          consoleInfo(`${name} file saved...`);
+        });
 
-      const createdVideo = await defaultList.createVideo(video);
-      return createdVideo;
-    } else throw new Error(`not file`);
+        const createdVideo = await defaultList.createVideo(video);
+        return createdVideo;
+      } else throw new Error(`not file`);
+    }
   } catch (error) {
-    consoleError(`createList -> ${error.message}`);
+    consoleError(`createVideo -> ${error.message}`);
     throw new Error(error);
   }
 };
