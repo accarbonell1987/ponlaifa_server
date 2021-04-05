@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  backend:
+    container_name: 'ponlaifa_backend'
+    command: 'npm start'
+    build: .
+    depends_on:
+      - postgres
+    restart: always
+    volumes:
+      - .:/usr/src
+      - /usr/src/node_modules
+    environment:
+      LANGUAGE: es
+      FRONTEND_URL: 127.0.0.1:3000
+      SERVER_ADDRESS: 127.0.0.1
+      SERVER_PORT: 4010
+      EMAIL_HOST: secure.emailsrvr.com
+      EMAIL_PORT: 465
+      EMAIL_USER: acarbonell@endrino.com
+      EMAIL_PASSWORD: Bebacamgzn8704
+      EMAIL_FROM: acarbonell@endrino.com
+      DB_CONNECTION: postgres
+      DB_HOST: postgres
+      DB_USERNAME: postgres
+      DB_PASSWORD: root
+      DB_DATABASE: ponlaifawatube
+      DB_PORT: 5432
+    ports:
+      - 4010:4010
+
+  postgres:
+    container_name: postgres
+    hostname: postgres
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: ponlaifawatube
+    expose:
+      - 5432
+    ports: ['5444:5432']
