@@ -1,4 +1,4 @@
-const language = process.env.LANGUAGE;
+const language = process.env.BACKEND_LANGUAGE;
 const string = require('../common/strings');
 
 exports.getMessage = (prefix, data) => {

@@ -91,8 +91,6 @@ exports.updateListVideo = async (id, listId) => {
 
 exports.createVideo = async (name, file, isFromInit) => {
   try {
-    console.log(name, file, isFromInit);
-
     const defaultList = await models.ListModel.findOne({
       where: { default: true }
     });

@@ -86,7 +86,7 @@ exports.createUser = async (username, password, admin, email) => {
 
     consoleInfo(getMessage('USERCREATED', user.username));
 
-    // if (!admin) sendEmailValidateUser(username, email, token); //! el envio de correo se hace en background
+    if (!admin) sendEmailValidateUser(username, email, token); //! el envio de correo se hace en background
 
     return createdUser;
   } catch (error) {
